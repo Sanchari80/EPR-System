@@ -1,0 +1,11 @@
+export type Party = { id: string; name: string; type: 'customer' | 'supplier'; phone: string | null }
+export type Product = { id: string; sku: string; name: string; cost: number; price: number; stock: number; reorder_level: number }
+export type Order = { id: string; no: string; type: 'sale' | 'purchase'; total: number; paid: number; created_at: string; parties: { name: string } | null }
+export type Move = { id: string; qty: number; kind: 'in' | 'out'; created_at: string; products: { name: string } | null }
+export type Balance = { id: number; code: string; name: string; type: 'asset' | 'liability' | 'income' | 'expense'; debit: number; credit: number }
+export type Ledger = { id: string; debit: number; credit: number; memo: string; accounts: { name: string } | null }
+export type ItemRow = { product_id: string; qty: number; unit_price: number }
+export type PartyBal = { id: string; name: string; type: 'customer' | 'supplier'; phone: string | null; billed: number; paid: number; due: number; orders: number }
+export type Daily = { day: string; sales: number; purchases: number }
+export type TopProd = { id: string; name: string; qty: number; revenue: number }
+export type Line = { id: string; qty: number; unit_price: number; products: { name: string } | null }

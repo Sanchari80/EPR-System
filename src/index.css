@@ -1,0 +1,32 @@
+@import "tailwindcss";
+@theme {
+  --font-sans: "Bricolage Grotesque", system-ui, sans-serif;
+  --color-ink: #0b1512; --color-panel: #12211c; --color-brass: #f2b84b;
+  --color-mint: #4fd1a5; --color-coral: #ff6b5b; --color-mist: #9bb3aa;
+}
+@layer base {
+  html { -webkit-tap-highlight-color: transparent; }
+  body { @apply bg-ink text-slate-100 antialiased; font-variant-numeric: tabular-nums; overflow-x: hidden; }
+  td { @apply p-3; }
+  select option { background: #12211c; }
+}
+@layer components {
+  .glass { @apply bg-white/[0.04] backdrop-blur-xl border border-white/10 rounded-2xl; }
+  .inp { @apply w-full bg-white/5 border border-white/10 rounded-xl px-3 py-2 outline-none transition focus:border-brass focus:ring-2 focus:ring-brass/30; }
+}
+.blob { animation: drift 16s ease-in-out infinite alternate; }
+@keyframes drift { to { transform: translate(70px, -50px) scale(1.25); } }
+/* phones: tables become stacked cards */
+@media (max-width: 767px) {
+  .rt thead { display: none; }
+  .rt tr { display: block; padding: 0.5rem 0.75rem; }
+  .rt td { display: flex; justify-content: space-between; align-items: center; gap: 1rem; padding: 0.35rem 0; text-align: right; }
+  .rt td::before { content: attr(data-label); color: var(--color-mist); text-align: left; }
+}
+@media print {
+  body * { visibility: hidden; }
+  .printable, .printable * { visibility: visible; color: #000 !important; }
+  .printable { position: fixed; inset: 0; background: #fff; padding: 2rem; }
+  .noprint { display: none !important; }
+}
+@media (prefers-reduced-motion: reduce) { .blob { animation: none; } }
